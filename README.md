@@ -1,70 +1,226 @@
-# Getting Started with Create React App
+📝 Tasks & Notes App (Kanban + Notes)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a small productivity app where a user can manage tasks and notes.
+It is built mainly to practice React Query, Next.js App Router, and some advanced UI logic like Kanban drag & drop and autosave editors.
 
-## Available Scripts
+It’s not meant to be perfect or production-ready, but more like a realistic frontend-heavy project.
 
-In the project directory, you can run:
+What the app does (in simple words)
+Tasks
+You can create, edit, and delete tasks
+**Tasks have:
+title
+description
+priority (low / medium / high)
+status (todo / in-progress / done)
+**
+Tasks can be viewed in:
+Table view
+Kanban view (Trello-like)
 
-### `npm start`
+Kanban View
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Tasks are grouped by status (columns)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+You can drag a task from one column to another
 
-### `npm test`
+When you drop a task in another column:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+its status is updated immediately (optimistic update)
 
-### `npm run build`
+You can also reorder tasks inside the same column
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+this order is only remembered in the UI
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+once you refresh the page, it resets (intentionally)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Sorting & Filtering (Kanban)
 
-### `npm run eject`
+Filter by:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+priority
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+status
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Sort by:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+created date
 
-## Learn More
+priority
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+When sorting is active:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+manual drag reorder is disabled
 
-### Code Splitting
+drag between columns still works
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Notes
 
-### Analyzing the Bundle Size
+Notes are simpler than tasks
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+A note only has:
 
-### Making a Progressive Web App
+content
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+createdAt / updatedAt
 
-### Advanced Configuration
+Notes List
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Shows all notes in a simple grid layout
 
-### Deployment
+You can:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+create a new note
 
-### `npm run build` fails to minify
+delete a note
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+click a note to open it
+
+Single Note Page
+
+Uses Tiptap rich text editor
+
+Supports autosave
+
+when you stop typing, the note is saved automatically
+
+saving is debounced to avoid spamming the backend
+
+No “Save” button needed (but delete still exists)
+
+Tech Stack (what I used)
+
+Next.js (App Router)
+
+React Query
+
+caching
+
+optimistic updates
+
+invalidation & setQueryData
+
+Material UI
+
+dnd-kit
+
+drag & drop for Kanban
+
+Tiptap
+
+rich text editor for notes
+
+Local JSON database
+
+simple backend logic
+
+per-user data (tasks & notes)
+
+Cookie-based auth
+
+token stored as httpOnly cookie
+
+Important Design Decisions (on purpose)
+
+Drag & drop order is NOT persisted
+
+this keeps backend simple
+
+focus is on frontend behavior
+
+Notes autosave uses HTML content
+
+stored as string
+
+rendered back inside editor
+
+Kanban drag uses drag handle
+
+to avoid conflicts with edit/delete buttons
+
+Tasks and Notes share similar logic
+
+useTasks / useTask
+
+useNotes / useNote
+
+same mental model, different data
+
+Project Structure (simplified)
+/app
+  /tasks
+    page.tsx
+    [id]/page.tsx
+  /notes
+    page.tsx
+    [id]/page.tsx
+
+/hooks
+  useTasks.ts
+  useTask.ts
+  useNotes.ts
+  useNote.ts
+
+/myComponents
+  TasksKanbanView.tsx
+  TasksTableView.tsx
+  DragableTaskCard.tsx
+  TaskPaper.tsx
+  NotePaper.tsx
+  NoteDetail.tsx
+
+Why I built this
+
+I wanted a project that:
+
+is not trivial
+
+touches real frontend problems
+
+forces me to think about:
+
+state sync
+
+caching
+
+optimistic updates
+
+drag & drop edge cases
+
+editor autosave
+
+Also I wanted something that feels like a real internal tool, not just a demo.
+
+What is not perfect (and that’s ok)
+
+Drag & drop can still be optimized (re-renders)
+
+Backend is very basic
+
+No real user management UI
+
+No persistence for Kanban ordering
+
+All of this is intentional — the goal was learning and architecture, not shipping SaaS 😅
+
+Final thoughts
+
+This project helped me understand:
+
+how React Query really works
+
+why separating list hooks vs single-item hooks matters
+
+why drag & drop + click interactions are tricky
+
+how autosave editors behave in real apps
+
+If I continue this project later, I’d:
+
+optimize DnD performance
+
+add markdown export
+
+maybe persist Kanban order
+
+add search
