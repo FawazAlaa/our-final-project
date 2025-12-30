@@ -1,12 +1,12 @@
-📝 Tasks & Notes App (Kanban + Notes)
+📝 Tasks & Notes App (Kanban + Notes) For osloop assesment 
 
-This project is a small productivity app where a user can manage tasks and notes.
+This project is a small productivity app where a user can manage tasks and notes according to your requests.
 It is built mainly to practice React Query, Next.js App Router, and some advanced UI logic like Kanban drag & drop and autosave editors.
 
-It’s not meant to be perfect or production-ready, but more like a realistic frontend-heavy project.
 
-What the app does (in simple words)
-Tasks
+What the app does: ad ma2dar 😂😂😂
+
+Tasks 📝
 You can create, edit, and delete tasks
 **Tasks have:
 title
@@ -15,24 +15,14 @@ priority (low / medium / high)
 status (todo / in-progress / done)
 **
 Tasks can be viewed in:
-Table view
-Kanban view (Trello-like)
-
+Table view 😎 ziada ana 3arf 😎
 Kanban View
-
 Tasks are grouped by status (columns)
-
-You can drag a task from one column to another
-
+You can drag a task from one column to another 
 When you drop a task in another column:
-
 its status is updated immediately (optimistic update)
-
-You can also reorder tasks inside the same column
-
+you can also reorder tasks inside the same column  😭😭😭😭😭😭 bas mish fe columns tania arraymove lsa 
 this order is only remembered in the UI
-
-once you refresh the page, it resets (intentionally)
 
 Sorting & Filtering (Kanban)
 
@@ -42,7 +32,7 @@ priority
 
 status
 
-Sort by:
+Sort by:   el 7eta de kant sa3ba shoia ast3nt bel ai (Guilty as charged) 👮👮👮
 
 created date
 
@@ -93,18 +83,14 @@ Tech Stack (what I used)
 Next.js (App Router)
 
 React Query
-
-caching
-
 optimistic updates
-
-invalidation & setQueryData
+invalidation & setQueryData a5do mny 2 days 3lshan afhmhom 😑😑😑
 
 Material UI
 
 dnd-kit
 
-drag & drop for Kanban
+drag & drop for Kanban   yasater 3leha 😭😭😭
 
 Tiptap
 
@@ -146,7 +132,7 @@ useNotes / useNote
 
 same mental model, different data
 
-Project Structure (simplified)
+Project Structure  el 7agat el assasia 
 /app
   /tasks
     page.tsx
@@ -171,56 +157,30 @@ Project Structure (simplified)
 
 Why I built this
 
-I wanted a project that:
+Because it was a challenge tasked from you and appreciate it I learned alot and imporved my skills and were 2 weeks felt like home
+also made me feel pressured and wierd as it is I work better under pressure 😂😂😂
 
-is not trivial
-
-touches real frontend problems
-
-forces me to think about:
-
-state sync
-
-caching
-
-optimistic updates
-
-drag & drop edge cases
-
-editor autosave
-
-Also I wanted something that feels like a real internal tool, not just a demo.
-
-What is not perfect (and that’s ok)
+What is not perfect:
 
 Drag & drop can still be optimized (re-renders)
-
 Backend is very basic
-
 No real user management UI
-
 No persistence for Kanban ordering
 
-All of this is intentional — the goal was learning and architecture, not shipping SaaS 😅
+
 
 Final thoughts
 
-This project helped me understand:
+Special Thanks To every Team memmber that helped me out:
+(CTO)
+Eng Mohamed Sakr 
+(Front End Team)
+Eng megahd  (Front End Leader)
+Eng Ahmed   
+Eng regad
+(Testing)
+Eng badr
 
-how React Query really works
+Deployed at 
+https://oslooptasks.vercel.app/
 
-why separating list hooks vs single-item hooks matters
-
-why drag & drop + click interactions are tricky
-
-how autosave editors behave in real apps
-
-If I continue this project later, I’d:
-
-optimize DnD performance
-
-add markdown export
-
-maybe persist Kanban order
-
-add search
